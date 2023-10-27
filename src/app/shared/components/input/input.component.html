@@ -1,0 +1,53 @@
+<div class="" [formGroup]="formGrp" class="relative">
+    <input [max]="max?max:''" [min]="min?min:''" [id]="id || formCtrlName" [type]="type" [placeholder]="placeholder"
+        [class]="customClass + ' w-full h-[3.5rem] px-4 bg-white placeholder:text-sm peer text-sans outline-none rounded-lg border border-[#f] placeholder:text-transparent focus:placeholder:text-gray-400'"
+        [required]="required" [readonly]="readonly" [formControlName]="formCtrlName"
+        [ngClass]="{ 'border-blue-600': formGrp.controls[formCtrlName].valid && formGrp.controls[formCtrlName].touched, 'border-red-600': formGrp.controls[formCtrlName].invalid && formGrp.controls[formCtrlName].touched }"
+        [value]="value" [pattern]="pattern" [name]="name" />
+    <label
+        class="absolute top-[50%] left-4 w-28 max-w-[90%] peer-focus:w-[unset] -translate-y-1/2 transition-all pr-1 peer-focus:-top-2 peer-focus:translate-y-[unset] block leading-[22px] text-slate-600 bg-white"
+        [ngClass]="{ '-top-2 translate-y-[unset] w-[unset]': formGrp.controls[formCtrlName].value && formGrp.controls[formCtrlName].dirty}"
+        [for]="id || formCtrlName">
+        {{label}} <span class="text-red-600" *ngIf="required">*</span>
+    </label>
+</div>
+
+<div>
+    <small class="text-red-500 mt-1"
+        [class.hidden]="formGrp.controls[formCtrlName].valid || formGrp.controls[formCtrlName].untouched"
+        *ngIf="formGrp.controls[formCtrlName].errors?.['required']">
+        {{ name }} is required
+    </small>
+    <small class="text-red-500 mt-1" *ngIf="formGrp.controls[formCtrlName].errors?.['minlength']">
+        {{ name }} should be at least {{formGrp.controls[formCtrlName].errors?.['minlength'].requiredLength}} characters
+    </small>
+    <small class="text-red-500 mt-1" *ngIf="formGrp.controls[formCtrlName].errors?.['maxlength']">
+        {{ name }} should not be more than {{formGrp.controls[formCtrlName].errors?.['maxlength'].requiredLength}}
+        characters
+    </small>
+    <small [class.hidden]="formGrp.controls[formCtrlName].valid || formGrp.controls[formCtrlName].untouched"
+        class="text-red-500 mt-1" *ngIf="formGrp.controls[formCtrlName].errors?.['notFound']">
+        Record not found
+    </small>
+    <small [class.hidden]="formGrp.controls[formCtrlName].valid || formGrp.controls[formCtrlName].untouched"
+        class="text-red-500 mt-1" *ngIf="formGrp.controls[formCtrlName].errors?.['notCorrect']">
+        {{name}} is not valid
+    </small>
+    <small [class.hidden]="formGrp.controls[formCtrlName].valid || formGrp.controls[formCtrlName].untouched"
+        class="text-red-500 mt-1" *ngIf="formGrp.controls[formCtrlName].errors?.['mismatch']">
+        {{matchName||'Passwords'}} do not match
+    </small>
+    <small [class.hidden]="formGrp.controls[formCtrlName].valid || formGrp.controls[formCtrlName].untouched"
+        class="text-red-500 mt-1" *ngIf="formGrp.controls[formCtrlName].errors?.['email']">
+        Invalid Email
+    </small>
+    <small class="text-red-500" *ngIf="formGrp.controls[formCtrlName].errors?.['pattern']">
+        {{name}} is not valid
+    </small>
+</div>
+
+
+<!-- Sample -->
+<!-- <app-input [formGrp]="verifyPatientForm" name="SSN ID" formCtrlName="ssnId" [placeholder]="'SSN ID'" [type]="'password'"
+    label="SSN ID" [required]="true">
+</app-input> -->
