@@ -1,5 +1,6 @@
 import { FormGroup, FormControl } from '@angular/forms';
 import { Component } from '@angular/core';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-doctor',
@@ -10,12 +11,6 @@ export class DoctorComponent {
   verifyPatientForm!: FormGroup;
 
   ngOnInit(): void {
-    this.initVerifyPatientForm();
-  }
-
-  initVerifyPatientForm() {
-    this.verifyPatientForm = new FormGroup({
-      ssnId: new FormControl([]),
-    });
+    initFlowbite();
   }
 }

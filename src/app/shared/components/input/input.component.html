@@ -1,12 +1,11 @@
 <div class="" [formGroup]="formGrp" class="relative">
     <input [max]="max?max:''" [min]="min?min:''" [id]="id || formCtrlName" [type]="type" [placeholder]="placeholder"
-        [class]="customClass + ' w-full h-[3.5rem] px-4 bg-white placeholder:text-sm peer text-sans outline-none rounded-lg border border-[#f] placeholder:text-transparent focus:placeholder:text-gray-400'"
+        [class]="customClass + ' block px-2.5 pb-2.5 pt-4 w-full text-sm bg-white rounded-lg border appearance-none focus:outline-none focus:ring-0 peer'"
         [required]="required" [readonly]="readonly" [formControlName]="formCtrlName"
         [ngClass]="{ 'border-blue-600': formGrp.controls[formCtrlName].valid && formGrp.controls[formCtrlName].touched, 'border-red-600': formGrp.controls[formCtrlName].invalid && formGrp.controls[formCtrlName].touched }"
         [value]="value" [pattern]="pattern" [name]="name" />
     <label
-        class="absolute top-[50%] left-4 w-28 max-w-[90%] peer-focus:w-[unset] -translate-y-1/2 transition-all pr-1 peer-focus:-top-2 peer-focus:translate-y-[unset] block leading-[22px] text-slate-600 bg-white"
-        [ngClass]="{ '-top-2 translate-y-[unset] w-[unset]': formGrp.controls[formCtrlName].value && formGrp.controls[formCtrlName].dirty}"
+        class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
         [for]="id || formCtrlName">
         {{label}} <span class="text-red-600" *ngIf="required">*</span>
     </label>
